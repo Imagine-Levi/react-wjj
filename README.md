@@ -99,14 +99,15 @@ const home = asyncComponent(() => import('@/pages/home/home'));
 
 yarn add babel-plugin-import --save-dev
 
+```
 package.json
-
 "babel": {
     "plugins": [
         ["import", [{ "libraryName": "antd", "style": "css" }]],
     ],
  }
  "style": true  => less
+```
 
 ## React Hot Loader
 
