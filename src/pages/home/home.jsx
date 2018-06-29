@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-class Home extends Componnet {
+class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      title: 'welcome...'
+      title: 'welcome3...'
     }
   }
 
