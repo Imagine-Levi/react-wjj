@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Loadable from 'react-loadable';
-import asyncComponent from '@/utils/asyncComponent';
 import LoadingComponent from '@/utils/loadingComponent';
+import asyncComponent from '@/utils/asyncComponent';
 //1
 const home = Loadable({
   loader: () => import('@/pages/home/home'),

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { AppContainer } from 'react-hot-loader';
+import { Hot } from 'react-hot-loader';
 import store from '@/store/store';
 import Route from '@/router';
 import registerServiceWorker from './registerServiceWorker';
@@ -16,9 +16,9 @@ const render = Component => {
   ReactDOM.render(
     //绑定redux、热加载
     <Provider store={store}>
-      <AppContainer>
+      <Hot>
         <Component />
-      </AppContainer>
+      </Hot>
     </Provider>,
     document.getElementById('root'),
   )
