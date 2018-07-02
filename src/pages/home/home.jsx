@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getExampleData } from '@/api/service';
 
 class Home extends Component {
   constructor(props) {
@@ -7,6 +8,15 @@ class Home extends Component {
     this.state = {
       title: 'welcome3...'
     }
+  }
+
+  componentDidMount() {
+    getExampleData({name: '123'}).then(res => {
+      console.log(res)
+      this.setState({
+        title: res
+      })
+    }).catch(err => console.log(err))
   }
 
   render() {
