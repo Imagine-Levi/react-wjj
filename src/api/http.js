@@ -12,6 +12,7 @@ axios.defaults.timeout = 100000;
 // });
 
 axios.interceptors.response.use(response => {
+  response.setHeader("Access-Control-Allow-Origin", "*");// 跨域问题
   // 在这里你可以判断后台返回数据携带的请求码
   if (response.data.retcode === 200 || response.data.retcode === '200') {
     return response.data.data || response.data;

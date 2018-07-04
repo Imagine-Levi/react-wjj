@@ -24,10 +24,10 @@ const server = http.createServer((req, res) => {
   }
   // res.statusCode = 404;
   console.log(`http://${config.hostname}:${config.port}`)
-  res.setHeader('Access-Control-Allow-Origin', `http://${config.hostname}:${config.port}`);
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods','PUT, POST, GET, DELETE, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
-  res.setHeader('Content-Type', 'text/plain');
+  // res.setHeader('Content-Type', 'text/plain');
 
   // res.end('Not Found');
 });
