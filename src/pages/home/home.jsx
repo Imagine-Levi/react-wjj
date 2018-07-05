@@ -6,7 +6,7 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      title: 'welcome3...'
+      title: 'welcome...'
     }
   }
 
