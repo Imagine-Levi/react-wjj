@@ -1,70 +1,63 @@
-let PORT = 3000;
-var http = require('http');
-var url=require('url');
-var fs=require('fs');
-var mine=require('./mine').types;
-var path=require('path');
-var httpProxy = require('http-proxy');
+const http = require('http'),
+  httpProxy = require('http-proxy'),
+  fs = require('fs'),
+  url = require('url'),
+  path = require('path'),
+  mime = require('./mime').types;
 
-var proxy = httpProxy.createProxyServer({
-  target: 'http://127.0.0.1:3000/',   //接口地址
-  // 下面的设置用于https
-  // ssl: {
-  //     key: fs.readFileSync('server_decrypt.key', 'utf8'),
-  //     cert: fs.readFileSync('server.crt', 'utf8')
-  // },
-  // secure: false
-});
+let proxy = httpProxy.createProxyServer({
+  target: 'http://127.0.0.1:3000',
+  secure: false
+})
 
-proxy.on('error', function(err, req, res){
+proxy.on('error', function (err, request, response) {
   res.writeHead(500, {
-    'content-type': 'text/plain'
-  });
-  console.log(err);
-  res.end('Something went wrong. And we are reporting a custom error message.');
-});
+    'Content-Type': 'text/plain'
+  })
+  console.log(err)
+  res.end('Something went wrong.')
+})
 
-var server = http.createServer(function (request, response) {
-  var pathname = url.parse(request.url).pathname;
-  //var realPath = path.join("main-pages", pathname); // 指定根目录
-  var realPath = path.join("./", pathname);
-  console.log(pathname);
-  console.log(realPath);
-  var ext = path.extname(realPath);
-  ext = ext ? ext.slice(1) : 'unknown';
+let server = http.createServer((request, response)=> {
+  let pathName = url.parse(request.url).pathname;
+  let realPath = request.url.substring(1);
+  let extName = realPath;
+  let indexOfQuestionMark = extName.indexOf('?');
 
-  //判断如果是接口访问，则通过proxy转发
-  if(pathname.indexOf("mspj-mall-admin") > 0){
+  if(indexOfQuestionMark >= 0){
+    extName = extName.substring(0, indexOfQuestionMark);
+    realPath = realPath.substring(0, indexOfQuestionMark);
+  }
+
+  extName = path.extname(extName);
+  extName = extName ? extName.slice(1) : 'unknown';
+  console.log(111)
+  if(/\/api\/.*$/.test(pathName)){
     proxy.web(request, response);
     return;
   }
 
-  fs.exists(realPath, function (exists) {
-    if (!exists) {
-      response.writeHead(404, {
-        'Content-Type': 'text/plain'
-      });
+  if(!fs.existsSync(realPath)){
+    response.writeHead(404, {'content-type': 'text/plain'});
+    response.write('The request URL:' + realPath + ' could not be found.');
+    response.end();
+    return;
+  }
 
-      response.write("This request URL " + pathname + " was not found on this server.");
-      response.end();
-    } else {
-      fs.readFile(realPath, "binary", function (err, file) {
-        if (err) {
-          response.writeHead(500, {
-            'Content-Type': 'text/plain'
-          });
-          response.end(err);
-        } else {
-          var contentType = mine[ext] || "text/plain";
-          response.writeHead(200, {
-            'Content-Type': contentType
-          });
-          response.write(file, "binary");
-          response.end();
-        }
-      });
+  fs.readFile(realPath, 'binary', function(err, file){
+    if(err){
+      response.writeHead(500, {'content-type': 'text/plain'});
+      response.end(err);
+      return;
     }
+
+    let contentType = mime[extName] || 'text/plain';
+    response.writeHead(200, {'content-type': contentType});
+    response.write(file, 'binary');
+    response.end();
   });
 });
-server.listen(PORT);
-console.log("Server runing at port: " + PORT + ".");
+
+console.log('listening on port 3000')
+
+server.listen(3000);

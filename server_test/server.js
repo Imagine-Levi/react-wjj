@@ -11,6 +11,10 @@ const route = require('./route').map(item => {
 });
 
 const server = http.createServer((req, res) => {
+  // 设置可跨域
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3002');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
   let method = req.method;
   let url = nUrl.parse(req.url);
 
@@ -22,14 +26,10 @@ const server = http.createServer((req, res) => {
     matchRoute.impl(req, res);
     return;
   }
-  // res.statusCode = 404;
-  console.log(`http://${config.hostname}:${config.port}`)
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods','PUT, POST, GET, DELETE, PATCH, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
-  // res.setHeader('Content-Type', 'text/plain');
 
-  // res.end('Not Found');
+  res.statusCode = 404;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Not Found');
 });
 
 server.listen(config.port, config.hostname, () => {
