@@ -9,4 +9,4 @@ const getExampleData = (params = {}) => {
 
 export default {
   getExampleData
-}
+}y
