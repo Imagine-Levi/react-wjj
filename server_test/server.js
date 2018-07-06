@@ -3,8 +3,6 @@ const nUrl = require('url');
 const config = require('./config');
 const controller = require('./controller');
 const route = require('./route').map(item => {
-  console.log(`route ${item.method}:${item.path}`);
-
   let tuple = item.impl.split('.');
   item.impl = controller[tuple[0]][tuple[1]];
   return item;
