@@ -2,7 +2,7 @@ exports.userById = userById;
 exports.createUser = createUser;
 
 function userById(req, res) {
-  res.end('waiting for impl.');
+  res.end('welcome to the home.');
   // res.statusCode = 200;
   // res.setHeader('Content-Type', 'application/json');
   // res.end(JSON.stringify({
