@@ -7,6 +7,11 @@ const getExampleData = (params = {}) => {
   return http.get(apis.getExampleData, params);
 }
 
+const getList = (params = {}) => {
+  return http.get(apis.getList, params);
+}
+
 export default {
-  getExampleData
+  getExampleData,
+  getList
 }
