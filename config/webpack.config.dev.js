@@ -124,6 +124,7 @@ module.exports = {
           },
         ],
         include: paths.appSrc,
+        exclude:[path.resolve(__dirname, '../node_modules')]
       },
       {
         // "oneOf" will traverse all following loaders until one will

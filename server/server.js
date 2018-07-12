@@ -3,8 +3,6 @@ const nUrl = require('url');
 const config = require('./config');
 const controller = require('./controller');
 const route = require('./route').map(item => {
-  console.log(`route ${item.method}:${item.path}`);
-
   let tuple = item.impl.split('.');
   item.impl = controller[tuple[0]][tuple[1]];
   return item;
@@ -26,7 +24,6 @@ const server = http.createServer((req, res) => {
     matchRoute.impl(req, res);
     return;
   }
-
   res.statusCode = 404;
   res.setHeader('Content-Type', 'text/plain');
   res.end('Not Found');

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getExampleData } from '@/api/service';
+import api from '@/api/service';
 
 class Home extends Component {
   constructor(props) {
@@ -11,8 +11,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    getExampleData({name: '123'}).then(res => {
-      console.log(res)
+    api.getExampleData({name: '123'}).then(res => {
       this.setState({
         title: res
       })

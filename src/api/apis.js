@@ -4,5 +4,6 @@
 const prefix = 'http://127.0.0.1:3000'; // api地址前缀
 
 export default {
-  getExampleData: prefix + '/api/user'
+  getExampleData: prefix + '/api/user',
+  getList: prefix + '/api/getList'
 }

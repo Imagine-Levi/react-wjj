@@ -6,4 +6,8 @@ exports = module.exports = [{
   method: 'POST',
   path: '/api/user',
   impl: 'account.createUser'
+}, {
+  method: 'GET',
+  path: '/api/getList',
+  impl: 'account.getList'
 }];
