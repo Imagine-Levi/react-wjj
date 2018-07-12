@@ -3,7 +3,6 @@ import { Table, Divider, Button } from 'antd';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reqData, delColumn } from '@/store/table/action';
-import data from '@/pages/about/test';
 import api from '@/api/service';
 
 class About extends Component {
