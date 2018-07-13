@@ -14,7 +14,7 @@ store.subscribe(() => {
 });
 const render = Component => {
   ReactDOM.render(
-    //绑定redux、热加载
+    // Provider是顶层组件的作用，将store作为上下文提供给全局共享
     <Provider store={store}>
       <AppContainer>
         <Component />

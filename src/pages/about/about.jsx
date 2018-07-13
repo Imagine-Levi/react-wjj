@@ -70,3 +70,6 @@ export default connect(state => ({
   reqData,
   delColumn
 })(About);
+// connect方法做的事情是将state和dispatch绑定到Connect组件的参数上，
+// 然后Connect组件将你当前的About组件封装起来，使得About组件可以通过
+// props获取到父组件Connect传递的state和props。
