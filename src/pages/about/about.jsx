@@ -8,7 +8,9 @@ import api from '@/api/service';
 class About extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      name: 'test'
+    };
   }
 
   static propTypes = {
