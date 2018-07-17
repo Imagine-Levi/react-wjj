@@ -10,4 +10,8 @@ exports = module.exports = [{
   method: 'GET',
   path: '/api/getList',
   impl: 'account.getList'
+}, {
+  method: 'GET',
+  path: '/api/queryList',
+  impl: 'account.queryList'
 }];
