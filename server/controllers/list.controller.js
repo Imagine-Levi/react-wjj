@@ -10,15 +10,25 @@ const List = require('../models/list.model');
 //   });
 // };
 
+
+// const getList = () => {
+//   List.find({}, (err, res) => {
+//     if (err) {
+//       console.log("Error:" + err);
+//     } else {
+//       console.log("Res:" + res);
+//     }
+//   });
+// };
+
 const getList = () => {
-  List.find({}, (err, res) => {
-    if (err) {
-      console.log("Error:" + err);
-    } else {
-      console.log("Res:" + res);
-    }
+  List.findList((err, res) => {
+      if (err)
+          console.log(err);
+      console.log(res);
   });
 };
+
 
 module.exports = {
   getList

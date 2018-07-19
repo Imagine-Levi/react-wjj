@@ -7,6 +7,8 @@ const SourceMapSupport = require('source-map-support');
 const bb = require('express-busboy');
 const Routes = require('./routes');
 
+// const indexRouter = require( './routes/demo.js' );
+
 const app = express();
 
 bb.extend(app);
@@ -33,14 +35,17 @@ const port = process.env.PORT || 3000;
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/wjj', {
   useMongoClient: true
+}).on('open', () => {
+    console.log("数据库连接成功！！！");
 });
 
 // add Source Map Support
 SourceMapSupport.install();
 
 app.use('/api', Routes);
+// app.use('/api/getList', indexRouter);
 
-app.get('/', (req,res) => {
+app.get('/', (req, res) => {
   return res.end('Api working');
 });
 
@@ -51,6 +56,6 @@ app.use((req, res, next) => {
 
 
 // start the server
-app.listen(port,() => {
+app.listen(port, () => {
   console.log(`App Server Listening at ${port}`);
 });
