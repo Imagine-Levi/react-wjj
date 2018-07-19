@@ -11,24 +11,29 @@ let queryList = function(db, callback) {
       console.log('Error:' + err);
       return;
     }
-    callback(result);
+    callback();
+    return result;
   });
 }
 
-// MongoClient.connect(DB_CONN_STR, function(err, db) {
-//   if (err) {
-//     console.log(err);
-//     return;
-//   }
-//   console.log("连接成功！");
-//
-//   //2、查询数据
-//   queryList(db, function(result) {
-//     data = result;
-//     console.log(data);
-//     db.close();
-//   });
-// });
+MongoClient.connect(DB_CONN_STR, function(err, db) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  console.log("连接成功！");
+
+  queryList(db, function() {
+    db.close();
+  });
+
+  //2、查询数据
+  // queryList(db, function(result) {
+  //   data = result;
+  //   console.log(data);
+  //   db.close();
+  // });
+});
 
 module.exports = {
   queryList
