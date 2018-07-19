@@ -11,7 +11,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    api.getExampleData({name: '123'}).then(res => {
+    api.queryList({name: '123'}).then(res => {
       this.setState({
         title: res
       })

@@ -57,6 +57,7 @@ class About extends Component {
   }
 
   render() {
+    // console.log(data)
     const { list } = this.props.table;
     return (
       <Table columns={this.columns} dataSource={list} />

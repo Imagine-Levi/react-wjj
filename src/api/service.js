@@ -11,7 +11,12 @@ const getList = (params = {}) => {
   return http.get(apis.getList, params);
 }
 
+const queryList = (params = {}) => {
+  return http.get(apis.queryList, params);
+}
+
 export default {
   getExampleData,
-  getList
+  getList,
+  queryList
 }

@@ -12,7 +12,7 @@ const server = http.createServer((req, res) => {
   // 设置可跨域
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3002');
   res.setHeader('Access-Control-Allow-Credentials', true);
-
+  
   let method = req.method;
   let url = nUrl.parse(req.url);
 
