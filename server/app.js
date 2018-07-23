@@ -7,6 +7,8 @@ const SourceMapSupport = require('source-map-support');
 const bb = require('express-busboy');
 const Routes = require('./routes');
 
+// const indexRouter = require( './routes/demo.js' );
+
 const app = express();
 
 bb.extend(app);
@@ -38,6 +40,8 @@ mongoose.connect('mongodb://localhost:27017/wjj', {
 
 // add Source Map Support
 SourceMapSupport.install();
+
+app.use('/api', Routes);
 
 app.get('/', (req, res) => {
   return res.end('Api working');
