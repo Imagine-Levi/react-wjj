@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
-const ListSchema = new mongoose.Schema({
+const ListSchema = mongoose.Schema({
   name: String,
   username: String,
   age: String
 }, {
+  collection: 'list',
   timestamps: true
 });
 const List = mongoose.model('list', ListSchema);
