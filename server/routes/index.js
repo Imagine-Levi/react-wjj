@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const ListController = require('../controllers/list.controller');
+const MongoController = require('../controllers/list.controller');
+const ListController = new MongoController();
 
-router.route('/api/getList').get(ListController.getList);
+router.get('/getList', (req, res) => {
+  ListController.getList((data) => {
+    res.json(data);
+  });
+});
 
 module.exports = router;
