@@ -10,8 +10,4 @@ const ListSchema = mongoose.Schema({
 });
 const List = mongoose.model('list', ListSchema);
 
-ListSchema.statics.findList = (callback) => {
-    return List.find({}, callback);
-};
-
 module.exports = List;
