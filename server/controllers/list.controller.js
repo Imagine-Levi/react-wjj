@@ -1,18 +1,15 @@
 const List = require('../models/list.model');
 
-class MongoController {
+const getList = (params, callback) => {
+  List.find(params, (err, data) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(data);
+    }
+  });
+};
 
-  constructor() {}
-
-  getList(callback) {
-    List.find({}, (err, data) => {
-      if (err) {
-        callback('Invalid Request!');
-      } else {
-        callback(data);
-      }
-    });
-  };
-}
-
-module.exports = MongoController;
+module.exports = {
+  getList
+};

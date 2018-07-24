@@ -47,8 +47,8 @@ class About extends Component {
   }];
 
   componentDidMount() {
-    api.getList({page: 1}).then(res => {
-      this.props.reqData(res.list);
+    api.getList({age: '26'}).then(res => {
+      this.props.reqData(res.data);
     }).catch(err => console.log(err))
   }
 
@@ -57,7 +57,6 @@ class About extends Component {
   }
 
   render() {
-    // console.log(data)
     const { list } = this.props.table;
     return (
       <Table columns={this.columns} dataSource={list} />

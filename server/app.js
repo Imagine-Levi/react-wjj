@@ -7,8 +7,6 @@ const SourceMapSupport = require('source-map-support');
 const bb = require('express-busboy');
 const Routes = require('./routes');
 
-// const indexRouter = require( './routes/demo.js' );
-
 const app = express();
 
 bb.extend(app);
@@ -23,12 +21,12 @@ app.use(function(req, res, next) {
 
 // configure app
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json()); //json解析器
+// app.use(bodyParser.urlencoded({ extended: true })); //url-encoded解析器
 app.use(express.static(path.join(__dirname, 'public')));
 
 // set the port
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8090;
 
 // connect to database
 mongoose.Promise = global.Promise;
@@ -40,8 +38,6 @@ mongoose.connect('mongodb://localhost:27017/wjj', {
 
 // add Source Map Support
 SourceMapSupport.install();
-
-app.use('/api', Routes);
 
 app.get('/', (req, res) => {
   return res.end('Api working');

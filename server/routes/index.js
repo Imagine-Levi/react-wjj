@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-const MongoController = require('../controllers/list.controller');
-const ListController = new MongoController();
+const ListController = require('../controllers/list.controller');
 
-router.get('/getList', (req, res) => {
-  ListController.getList((data) => {
-    res.json(data);
+router.post('/getList', (req, res) => {
+  ListController.getList(req.body, (data) => {
+    res.json({
+      status: 200,
+      msg: 'success',
+      data: data
+    });
   });
 });
 
