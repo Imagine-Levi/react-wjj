@@ -16,8 +16,12 @@ const queryList = (params = {}) => {
   return http.get(apis.queryList, params);
 }
 
+const login = (params = {}) => {
+  return http.post(apis.login, qs.stringify(params));
+}
 export default {
   getExampleData,
   getList,
-  queryList
+  queryList,
+  login
 }

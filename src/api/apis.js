@@ -6,5 +6,6 @@ const prefix = 'http://127.0.0.1:8090'; // api地址前缀
 export default {
   getExampleData: prefix + '/api/user',
   getList: prefix + '/api/getList',
-  queryList: prefix + '/api/queryList'
+  queryList: prefix + '/api/queryList',
+  login: prefix + '/api/login'
 }
